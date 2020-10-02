@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 
-import { User } from './entities/user.entity';
+import { UserEntity } from './entities/user.entity';
 import { PostEntity } from './entities/post.entity';
 
 @Module({
@@ -19,7 +19,7 @@ import { PostEntity } from './entities/post.entity';
       username: 'root',
       password: '01052020',
       database: 'nesttyyeorm',
-      entities: [User, PostEntity],
+      entities: [UserEntity, PostEntity],
       synchronize: true,
       autoLoadEntities: true,
     }),

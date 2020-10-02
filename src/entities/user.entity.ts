@@ -10,7 +10,7 @@ import {
 import { PostEntity } from './post.entity';
 
 @Entity('User')
-export class User extends BaseEntity {
+export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

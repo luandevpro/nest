@@ -4,10 +4,9 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   BaseEntity,
-  JoinTable,
 } from 'typeorm';
 
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 
 @Entity('Post')
 export class PostEntity extends BaseEntity {
@@ -27,9 +26,9 @@ export class PostEntity extends BaseEntity {
   updatedAt: string;
 
   @ManyToOne(
-    type => User,
+    type => UserEntity,
     user => user.posts,
     { onDelete: 'CASCADE' },
   )
-  user: User;
+  user: UserEntity;
 }
