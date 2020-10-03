@@ -25,6 +25,9 @@ export class PostEntity extends BaseEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: string;
 
+  @Column()
+  userId: number;
+
   @ManyToOne(
     type => UserEntity,
     user => user.posts,

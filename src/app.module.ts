@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -22,6 +22,10 @@ import { PostEntity } from './entities/post.entity';
       entities: [UserEntity, PostEntity],
       synchronize: true,
       autoLoadEntities: true,
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: true,
+      installSubscriptionHandlers: true,
     }),
     UsersModule,
     PostsModule,
