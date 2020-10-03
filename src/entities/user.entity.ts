@@ -21,6 +21,9 @@ export class UserEntity extends BaseEntity {
   email: string;
 
   @Column()
+  password: string;
+
+  @Column()
   age: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
