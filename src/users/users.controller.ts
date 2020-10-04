@@ -6,12 +6,16 @@ import {
   Post,
   Put,
   Body,
+  ParseIntPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 import { User } from '../entities/user.entity';
 
 import { CreateUserDto } from '../dto/user.dto';
+
+import { ValidationPipe } from '../pipes/users.pipes';
 
 @Controller()
 export class UsersController {
@@ -23,10 +27,11 @@ export class UsersController {
   }
 
   @Get('users/:id')
-  getUser(@Param('id') id: number): Promise<User> {
+  getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.getUser(id);
   }
 
+  @UsePipes(ValidationPipe)
   @Post('users')
   createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);

@@ -6,6 +6,7 @@ import {
   Post,
   Put,
   Body,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 
@@ -23,7 +24,7 @@ export class PostsController {
   }
 
   @Get('posts/:id')
-  getPost(@Param('id') id: string): Promise<PostEntity> {
+  getPost(@Param('id', ParseUUIDPipe) id: string): Promise<PostEntity> {
     return this.postsService.getPost(id);
   }
 
