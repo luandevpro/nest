@@ -2,26 +2,25 @@ import {
   BaseEntity,
   Entity,
   Column,
-  PrimaryGeneratedColumn,
+  ObjectIdColumn,
   OneToMany,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
+import { ObjectID } from 'mongodb';
 
 import { PostEntity } from './post.entity';
+import { Profile } from './profile.entity';
 
 @Entity('User')
-export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class User {
+  @ObjectIdColumn() id: ObjectID;
 
-  @Column()
-  name: string;
+  @Column() name: string;
 
-  @Column()
-  email: string;
+  @Column() email: string;
 
-  @Column()
-  age: number;
+  @Column() age: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: string;
@@ -38,4 +37,15 @@ export class User extends BaseEntity {
     { onDelete: 'CASCADE' },
   )
   posts: PostEntity[];
+
+  @OneToOne(
+    type => Profile,
+    profile => profile.user,
+  )
+  @JoinColumn()
+  profile: Profile;
+
+  constructor(pet?: Partial<User>) {
+    Object.assign(this, pet);
+  }
 }

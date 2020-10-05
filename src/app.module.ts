@@ -8,20 +8,18 @@ import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 
 import { User } from './entities/user.entity';
+import { Profile } from './entities/profile.entity';
 import { PostEntity } from './entities/post.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '01052020',
-      database: 'nesttyyeorm',
-      entities: [User, PostEntity],
-      synchronize: true,
-      autoLoadEntities: true,
+      type: 'mongodb',
+      url: 'mongodb://localhost/typeorm',
+      useNewUrlParser: true,
+      synchronize: false,
+      logging: true,
+      entities: [User, PostEntity, Profile],
     }),
     UsersModule,
     PostsModule,

@@ -1,18 +1,18 @@
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
+  ObjectIdColumn,
   ManyToOne,
   BaseEntity,
-  JoinTable,
+  ObjectID,
 } from 'typeorm';
 
 import { User } from './user.entity';
 
 @Entity('Post')
-export class PostEntity extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class PostEntity {
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column()
   title: string;

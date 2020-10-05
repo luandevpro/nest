@@ -7,6 +7,7 @@ import {
   Put,
   Body,
 } from '@nestjs/common';
+import { ObjectID } from 'mongodb';
 import { UsersService } from './users.service';
 
 import { User } from '../entities/user.entity';
@@ -23,7 +24,7 @@ export class UsersController {
   }
 
   @Get('users/:id')
-  getUser(@Param('id') id: number): Promise<User> {
+  getUser(@Param('id') id: string): Promise<User> {
     return this.usersService.getUser(id);
   }
 
@@ -34,14 +35,14 @@ export class UsersController {
 
   @Put('users/:id')
   updateUser(
-    @Param('id') id: number,
+    @Param('id') id: ObjectID,
     @Body() updateUserDto: CreateUserDto,
   ): Promise<User> {
     return this.usersService.updateUser(id, updateUserDto);
   }
 
   @Delete('users/:id')
-  deleteUser(@Param('id') id: number): Promise<any> {
+  deleteUser(@Param('id') id: ObjectID): Promise<any> {
     return this.usersService.deleteUser(id);
   }
 }
